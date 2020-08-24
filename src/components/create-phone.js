@@ -3,14 +3,14 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
-export default class CreateStudent extends Component {
+export default class CreatePhone extends Component {
 
     constructor(props) {
         super(props)
 
         // Setting up functions
-        this.onChangeStudentName = this.onChangeStudentName.bind(this);
-        this.onChangeStudentMobileNo = this.onChangeStudentMobileNo.bind(this);
+        this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeMobileNo = this.onChangeMobileNo.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         // Setting up state
@@ -20,12 +20,12 @@ export default class CreateStudent extends Component {
         }
     }
 
-    onChangeStudentName(e) {
+    onChangeName(e) {
         this.setState({ name: e.target.value })
     }
 
 
-    onChangeStudentMobileNo(e) {
+    onChangeMobileNo(e) {
         this.setState({ mobileNo: e.target.value })
     }
 
@@ -51,17 +51,17 @@ export default class CreateStudent extends Component {
             <Form onSubmit={this.onSubmit}>
                 <Form.Group controlId="Name">
                     <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" value={this.state.name} onChange={this.onChangeStudentName} />
+                    <Form.Control type="text" value={this.state.name} onChange={this.onChangeName} />
                 </Form.Group>
 
 
                 <Form.Group controlId="Name">
                     <Form.Label>Mobile No</Form.Label>
-                    <Form.Control type="text" value={this.state.mobileNo} onChange={this.onChangeStudentMobileNo} />
+                    <Form.Control type="text" value={this.state.mobileNo} onChange={this.onChangeMobileNo} />
                 </Form.Group>
 
                 <Button variant="danger" size="lg" block="block" type="submit">
-                    Create Student
+                    Create Contact
                 </Button>
             </Form>
         </div>);

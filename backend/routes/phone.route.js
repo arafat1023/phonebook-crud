@@ -5,19 +5,21 @@ let mongoose = require('mongoose'),
 // Student Model
 let phoneSchema = require('../models/Phonebook');
 
-// CREATE Student
+// CREATE phonebook
 router.route('/create-phonebook').post((req, res, next) => {
     phoneSchema.create(req.body, (error, data) => {
         if (error) {
             return next(error)
-        } else {
+        }
+
+        else {
             console.log(data)
             res.json(data)
         }
     })
 });
 
-// READ Students
+// READ phonebook
 router.route('/').get((req, res) => {
     phoneSchema.find((error, data) => {
         if (error) {
@@ -28,7 +30,7 @@ router.route('/').get((req, res) => {
     })
 })
 
-// Get Single Student
+// Get Single phonebook
 router.route('/edit-phonebook/:id').get((req, res) => {
     phoneSchema.findById(req.params.id, (error, data) => {
         if (error) {
@@ -40,7 +42,23 @@ router.route('/edit-phonebook/:id').get((req, res) => {
 })
 
 
-// Update Student
+router.route("/find").get(function(req, res) {
+    phoneSchema.find(
+        { "mobileNo": req.params.mobileNo},
+        function(err, result) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.json(result);
+            }
+        }
+    );
+});
+
+
+
+
+// Update phonebook
 router.route('/update-phonebook/:id').put((req, res, next) => {
     phoneSchema.findByIdAndUpdate(req.params.id, {
         $set: req.body
@@ -50,12 +68,27 @@ router.route('/update-phonebook/:id').put((req, res, next) => {
             console.log(error)
         } else {
             res.json(data)
-            console.log('Student updated successfully !')
+            console.log('phonebook updated successfully !')
         }
     })
 })
 
-// Delete Student
+
+router.route('/update-phonebook/:id').put((req, res, next) => {
+    phoneSchema.findByIdAndUpdate(req.params.id, {
+        $set: req.body
+    }, (error, data) => {
+        if (error) {
+            return next(error);
+            console.log(error)
+        } else {
+            res.json(data)
+            console.log('phonebook updated successfully !')
+        }
+    })
+})
+
+// Delete phonebook
 router.route('/delete-phonebook/:id').delete((req, res, next) => {
     phoneSchema.findByIdAndRemove(req.params.id, (error, data) => {
         if (error) {

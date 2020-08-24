@@ -1,18 +1,22 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let studentSchema = new Schema({
+let phoneSchema = new Schema({
     name: {
         type: String
     },
-    email: {
-        type: String
-    },
-    rollno: {
-        type: Number
+    mobileNo: {
+        type: Number,
+        required: true,
+        validate: {
+            validator: function(v) {
+                return /^(?:\+88|01)?(?:\d{11}|\d{13})$/.test(v);
+            },
+            message: props => `${props.value} is not a valid phone number!`
+        },
     }
 }, {
-    collection: 'students'
+    collection: 'phonebook'
 })
 
-module.exports = mongoose.model('Student', studentSchema)
+module.exports = mongoose.model('Phonebook', phoneSchema)

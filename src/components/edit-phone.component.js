@@ -3,13 +3,13 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
-export default class EditStudent extends Component {
+export default class EditPhone extends Component {
 
     constructor(props) {
         super(props)
 
-        this.onChangeStudentName = this.onChangeStudentName.bind(this);
-        this.onChangeStudentMobileNo = this.onChangeStudentMobileNo.bind(this);
+        this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeMobileNo = this.onChangeMobileNo.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         // State
@@ -32,12 +32,12 @@ export default class EditStudent extends Component {
             })
     }
 
-    onChangeStudentName(e) {
+    onChangeName(e) {
         this.setState({ name: e.target.value })
     }
 
 
-    onChangeStudentMobileNo(e) {
+    onChangeMobileNo(e) {
         this.setState({ mobileNo: e.target.value })
     }
 
@@ -52,13 +52,14 @@ export default class EditStudent extends Component {
         axios.put('http://localhost:4000/phonebook/update-phonebook/' + this.props.match.params.id, studentObject)
             .then((res) => {
                 console.log(res.data)
-                console.log('Student successfully updated')
+                console.log('phonebook successfully updated')
             }).catch((error) => {
             console.log(error)
         })
 
-        // Redirect to Student List
-        this.props.history.push('/student-list')
+
+        // Redirect to phonebook List
+        this.props.history.push('/phone-list')
     }
 
 
@@ -67,13 +68,13 @@ export default class EditStudent extends Component {
             <Form onSubmit={this.onSubmit}>
                 <Form.Group controlId="Name">
                     <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" value={this.state.name} onChange={this.onChangeStudentName} />
+                    <Form.Control type="text" value={this.state.name} onChange={this.onChangeName} />
                 </Form.Group>
 
 
                 <Form.Group controlId="Name">
                     <Form.Label>Mobile No</Form.Label>
-                    <Form.Control type="text" value={this.state.mobileNo} onChange={this.onChangeStudentMobileNo} />
+                    <Form.Control type="text" value={this.state.mobileNo} onChange={this.onChangeMobileNo} />
                 </Form.Group>
 
                 <Button variant="danger" size="lg" block="block" type="submit">
