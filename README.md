@@ -14,6 +14,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ### `Start Backend Server`
 
 
+    Click On Factorial Task in the Navbar to view the first Task
     Get inside the backend folder
     Run npm install to install required packages
     Open terminal run nodemon server.js
