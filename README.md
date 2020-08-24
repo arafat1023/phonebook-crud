@@ -17,7 +17,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
     Get inside the backend folder
     Run npm install to install required packages
     Open terminal run nodemon server.js
-    Open other terminal run mongod
-    Open other terminal run mongo
+    Open another terminal run mongod
+    Open another terminal run mongo
 
 
