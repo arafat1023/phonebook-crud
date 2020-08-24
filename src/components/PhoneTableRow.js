@@ -14,6 +14,7 @@ export default class PhoneTableRow extends Component {
         axios.delete('http://localhost:4000/phonebook/delete-phonebook/' + this.props.obj._id)
             .then((res) => {
                 console.log('phonebook successfully deleted!')
+                window.location.reload(false);
             }).catch((error) => {
             console.log(error)
         })

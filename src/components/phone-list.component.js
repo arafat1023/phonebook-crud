@@ -32,20 +32,31 @@ export default class PhoneList extends Component {
             })
     }
 
-    gotMobile() {
+    // gotMobile() {
+    //
+    //     axios.get('http://localhost:4000/phonebook/find/'+ this.state.mobileNo)
+    //         .then(res => {
+    //             console.log(res.data);
+    //             this.setState({
+    //                 students: res.data
+    //             });
+    //
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         })
+    // }
 
-        axios.get('http://localhost:4000/phonebook/find/'+ this.state.mobileNo)
-            .then(res => {
-                console.log(res.data);
-                this.setState({
-                    students: res.data
-                });
-
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    }
+    gotMobile = () => {
+        console.log('getThanaList colling ...');
+        axios.get( 'http://localhost:4000/phonebook/find/', {
+            params: {mobileNo: this.state.mobileNo}
+        }, {})
+            .then((response) => {
+                console.log("response",response.data.data);
+                this.setState({ students: response.data.data  });
+            }).catch((error)=>{  console.log("error",error); this.setState({ students: []  });   });
+    };
 
     DataTable() {
         return this.state.students.map((res, i) => {

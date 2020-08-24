@@ -42,36 +42,31 @@ router.route('/edit-phonebook/:id').get((req, res) => {
 })
 
 
-router.route("/find").get(function(req, res) {
-    phoneSchema.find(
-        { "mobileNo": req.params.mobileNo},
-        function(err, result) {
-            if (err) {
-                res.send(err);
-            } else {
-                res.json(result);
-            }
-        }
-    );
+// router.route("/find").get(function(req, res) {
+//     console.log("movisx",req.query.mobileNo)
+//     phoneSchema.find(
+//         { "mobileNo": req.query.mobileNo},
+//         function(err, result) {
+//             if (err) {
+//                 res.send(err);
+//             } else {
+//                 res.json(result);
+//             }
+//         }
+//     );
+// });
+
+router.get('/find/', (req, res) => {
+    console.log(req.params.mobileNo)
+    phoneSchema.find({
+        mobileNo: req.params.mobileNo
+    })
+        .then(result => res.json(result));
 });
 
 
 
 
-// Update phonebook
-router.route('/update-phonebook/:id').put((req, res, next) => {
-    phoneSchema.findByIdAndUpdate(req.params.id, {
-        $set: req.body
-    }, (error, data) => {
-        if (error) {
-            return next(error);
-            console.log(error)
-        } else {
-            res.json(data)
-            console.log('phonebook updated successfully !')
-        }
-    })
-})
 
 
 router.route('/update-phonebook/:id').put((req, res, next) => {
