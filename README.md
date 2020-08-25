@@ -20,5 +20,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
     Run npm install to install required packages
     Open terminal run nodemon server.js
     Open another terminal run mongo
+    Type a valid number.For instance:8801681xxxxxx
 
 
