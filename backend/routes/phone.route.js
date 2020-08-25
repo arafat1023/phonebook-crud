@@ -57,11 +57,20 @@ router.route('/edit-phonebook/:id').get((req, res) => {
 // });
 
 router.get('/find/', (req, res) => {
-    console.log(req.params.mobileNo)
+    console.log("got query", req.query.mobileNo)
     phoneSchema.find({
-        mobileNo: req.params.mobileNo
-    })
-        .then(result => res.json(result));
+        mobileNo:req.query.mobileNo
+    }, (error, data) => {
+        if (error) {
+            return next(error);
+            console.log(error)
+        } else {
+            res.json(data)
+            console.log(data)
+        }}
+
+    )
+
 });
 
 

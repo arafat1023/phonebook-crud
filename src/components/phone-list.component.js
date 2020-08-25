@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import PhoneTableRow from './PhoneTableRow';
+import Form from "react-bootstrap/Form";
 
 
 export default class PhoneList extends Component {
@@ -15,8 +16,13 @@ export default class PhoneList extends Component {
         this.onChangeMobileNo = this.onChangeMobileNo.bind(this);
     }
 
-    onChangeMobileNo(e) {
-        this.setState({ mobileNo: e.target.value })
+    // onChangeMobileNo(e) {
+    //     this.setState({ mobileNo: e.target.value })
+    // }
+
+    onChangeMobileNo(event){
+        console.log('state value', event.target.value)
+        this.setState({mobileNo:event.target.value})
     }
 
     componentDidMount() {
@@ -52,10 +58,15 @@ export default class PhoneList extends Component {
         axios.get( 'http://localhost:4000/phonebook/find/', {
             params: {mobileNo: this.state.mobileNo}
         }, {})
-            .then((response) => {
-                console.log("response",response.data.data);
-                this.setState({ students: response.data.data  });
-            }).catch((error)=>{  console.log("error",error); this.setState({ students: []  });   });
+            .then(res => {
+
+                this.setState({
+                    students: res.data
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     };
 
     DataTable() {
@@ -68,7 +79,7 @@ export default class PhoneList extends Component {
     render() {
         return (<div className="table-wrapper">
             <input style={{}}
-                   type="number" />
+                   type="number"  onChange={this.onChangeMobileNo} />
             <button type="button"  onClick={() => {this.gotMobile()}}
 
                     >
