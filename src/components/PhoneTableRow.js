@@ -7,10 +7,10 @@ export default class PhoneTableRow extends Component {
 
     constructor(props) {
         super(props);
-        this.deleteStudent = this.deleteStudent.bind(this);
+        this.deletePhonebook = this.deletePhonebook.bind(this);
     }
 
-    deleteStudent() {
+    deletePhonebook() {
         axios.delete('http://localhost:4000/phonebook/delete-phonebook/' + this.props.obj._id)
             .then((res) => {
                 console.log('phonebook successfully deleted!')
@@ -32,7 +32,7 @@ export default class PhoneTableRow extends Component {
                     <Link className="edit-link" to={"/edit-phone/" + this.props.obj._id}>
                         Edit
                     </Link>
-                    <Button onClick={this.deleteStudent} size="sm" variant="danger">Delete</Button>
+                    <Button onClick={this.deletePhonebook} size="sm" variant="danger">Delete</Button>
                 </td>
             </tr>
         );
