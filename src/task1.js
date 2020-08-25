@@ -2,13 +2,13 @@
 import React, { useState } from 'react';
 
 export default function Task1() {
-    const [userName, setUsername] = useState(0);
-    const [lastName, setLastname] = useState(0);
+    const [userValue, setUservalue] = useState(0);
+    const [lastValue, setLastvalue] = useState(0);
 
 
     const handleInput = e => {
-        setLastname(0);
-        setUsername(e.target.value);
+        setLastvalue(0);
+        setUservalue(e.target.value);
         console.log(e.target.value)
 
 
@@ -18,12 +18,12 @@ export default function Task1() {
         e.preventDefault();
 
         var r=1
-        var n=userName
+        var n=userValue
         while (n > 0)
             r *= n--;
         console.log(r)
-        console.log(lastName)
-        setLastname(r);
+        console.log(lastValue)
+        setLastvalue(r);
 
         return r;
 
@@ -41,7 +41,7 @@ export default function Task1() {
                 <br />
                 <button onClick={(e) => {saveFactorial(e)}}>Calculate Factorial </button>
             </form>
-            <h2>Factorial: {lastName}</h2>
+            <h2>Factorial: {lastValue}</h2>
         </div>
     );
 }
